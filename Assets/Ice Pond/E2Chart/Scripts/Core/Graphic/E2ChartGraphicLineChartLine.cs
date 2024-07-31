@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace E2C.ChartGraphic
 {
@@ -21,7 +23,25 @@ namespace E2C.ChartGraphic
             base.Awake();
             rectTransform.pivot = Vector2.zero;
         }
-        
+
+        protected override void Start()
+        {
+           
+        }
+
+        IEnumerator FetchDogecoinData()
+        {
+            for(int i = 0 ; i < show.Length; i++)
+            {
+                show[i] = true;
+                curve = true;
+                RefreshBuffer();
+                yield return new WaitForSeconds(0.025f);
+                curve = false;
+            }
+           
+        }
+
         public override void RefreshBuffer()
         {
             if (dataValue == null || dataValue.Length == 0 ||

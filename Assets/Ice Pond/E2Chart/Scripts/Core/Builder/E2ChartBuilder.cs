@@ -272,6 +272,7 @@ namespace E2C.ChartBuilder
 
         public void Build()
         {
+            
             if (!VerifyChartRect() || !dataInfo.isDataValid) return;
             if (isDateTime) ((E2ChartDataInfoDateTime)dataInfo).ComputeRange(options.xAxis.autoAxisRange, options.xAxis.minDateTimeString, options.xAxis.maxDateTimeString, options.xAxis.rangeDateTimeStringFormat);
             else if (isLinear) ((E2ChartDataInfoLinear)dataInfo).ComputeRange(options.xAxis.autoAxisRange, options.xAxis.min, options.xAxis.max);
@@ -671,6 +672,7 @@ namespace E2C.ChartBuilder
             contentRect.gameObject.AddComponent<Image>().color = Color.clear;
             pointerHandler = contentRect.gameObject.AddComponent<E2ChartPointerHandler>();
             SetPointerHandler(pointerHandler);
+            
         }
 
         public void SetPointerHandler(E2ChartPointerHandler ph)

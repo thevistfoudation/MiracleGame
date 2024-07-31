@@ -556,6 +556,7 @@ namespace E2C.ChartBuilder
                     }
                 }
             }
+
         }
 
         void CreateTrackingData()
