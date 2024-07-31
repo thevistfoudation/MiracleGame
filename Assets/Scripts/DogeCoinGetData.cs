@@ -17,6 +17,8 @@ public class DogeCoinGetData : MonoBehaviour
     public List<DateTime> dates = new List<DateTime>();
     public List<float> prices = new List<float>();
 
+    public GameObject panelLoading;
+
     [SerializeField]
     private InformationValue informationValueArea1;
     [SerializeField]
@@ -71,7 +73,9 @@ public class DogeCoinGetData : MonoBehaviour
             e2ChartData.categoriesX.Add(date.ToString("HH:mm"));
             prices.Add(price);
             e2ChartData.series[0].dataY.Add(price);
+           
         }
+      
         informationValueArea4.InittilizerData("Prev Close", prices[prices.Count - 1].ToString());
         informationValueArea3.InittilizerData("Open ", prices[0].ToString());
         prices.Sort();
@@ -79,9 +83,12 @@ public class DogeCoinGetData : MonoBehaviour
         informationValueArea2.InittilizerData("High ", prices[prices.Count - 1].ToString());
         textMeshProUGUIPriceNowTxt.text = "$" + prices[Random.Range(0, prices.Count - 1)].ToString();
         textMeshProUGUIPriceNowMarket.text = "$" + prices[prices.Count - 1].ToString();
-
-
         e2ChartData.gameObject.SetActive(true);
+        LeanTween.delayedCall(1f, () =>
+        {
+            panelLoading.SetActive(false);
+        });
+       
     }
 
   

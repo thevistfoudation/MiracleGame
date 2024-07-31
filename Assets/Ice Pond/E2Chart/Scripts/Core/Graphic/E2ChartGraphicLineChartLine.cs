@@ -26,7 +26,11 @@ namespace E2C.ChartGraphic
 
         protected override void Start()
         {
-           
+            //for (int i = 0; i < show.Length; i++)
+            //{
+            //    show[i] = false;
+            //}
+            //StartCoroutine(FetchDogecoinData());
         }
 
         IEnumerator FetchDogecoinData()
@@ -34,10 +38,8 @@ namespace E2C.ChartGraphic
             for(int i = 0 ; i < show.Length; i++)
             {
                 show[i] = true;
-                curve = true;
-                RefreshBuffer();
+                GenerateMesh();
                 yield return new WaitForSeconds(0.025f);
-                curve = false;
             }
            
         }
@@ -175,7 +177,6 @@ namespace E2C.ChartGraphic
 
                         Vector2 dir = p - pLast;
                         Vector2[] points = E2ChartGraphicUtility.CreateRect(dir, halfWidth);
-
                         AddPolygonRectRight(pLast, points, colors[colorIndex]);
                     }
                 }
